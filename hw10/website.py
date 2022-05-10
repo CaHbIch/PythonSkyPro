@@ -21,11 +21,12 @@ def get_id(id):
     id_list = ''
     for candidates in load_candidate():
         if candidates["id"] == id:
-            id_list += 'Имя кандидата: ' + candidates["name"] + " \n"
+            id_list += "<img src=https://picsum.photos/200>" + "\n"
+            id_list += 'Имя кандидата: ' + candidates["name"] + "\n"
             id_list += "Позиция кандидата: " + candidates["position"] + "\n"
             id_list += "Навыки через запятую: " + candidates["skills"] + "\n""\n"
             return "<h2>" + "<pre>" + id_list + "</pre>" + "<h2>"
-    return "<h1>" + "Нет такого кандидата" + "<h1>"
+    return "<h1>" + "Нет такого кандидата" + "<h1>" + "<img src=https://picsum.photos/500>"
 
 
 @app.route("/skills/<skill>/")
