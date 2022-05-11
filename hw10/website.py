@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from function import load_candidate
 
 app = Flask(__name__)
@@ -9,9 +9,9 @@ def get_candidates():
     """ Выведите полный список кандидатов """
     candidate = ""
     for candidates in load_candidate():
-        candidate += 'Имя кандидата: ' + candidates["name"] + " \n"
-        candidate += "Позиция кандидата: " + candidates["position"] + "\n"
-        candidate += "Навыки через запятую: " + candidates["skills"] + "\n""\n"
+        candidate += "Имя кандидата: " + candidates["name"] + " \n" \
+                     "Позиция кандидата: " + candidates["position"] + "\n" \
+                     "Навыки через запятую: " + candidates["skills"] + "\n""\n"
     return "<h2>" + "<pre>" + candidate + "</pre>" + "<h2>"
 
 
@@ -21,10 +21,10 @@ def get_id(id):
     id_list = ''
     for candidates in load_candidate():
         if candidates["id"] == id:
-            id_list += "<img src=https://picsum.photos/200>" + "\n"
-            id_list += 'Имя кандидата: ' + candidates["name"] + "\n"
-            id_list += "Позиция кандидата: " + candidates["position"] + "\n"
-            id_list += "Навыки через запятую: " + candidates["skills"] + "\n""\n"
+            id_list += "<img src=https://picsum.photos/200>" + "\n" \
+                       "Имя кандидата: " + candidates["name"] + "\n" \
+                       "Позиция кандидата: " + candidates["position"] + "\n" \
+                       "Навыки через запятую: " + candidates["skills"] + "\n"
             return "<h2>" + "<pre>" + id_list + "</pre>" + "<h2>"
     return "<h1>" + "Нет такого кандидата" + "<h1>" + "<img src=https://picsum.photos/500>"
 
@@ -32,14 +32,14 @@ def get_id(id):
 @app.route("/skills/<skill>/")
 def get_skil(skill):
     """ Выводит кандидатов по их навыкам"""
-    skill_list = ''
+    skill_list = ""
     for candidates in load_candidate():
-        if skill in candidates["skills"].capitalize():
-            skill_list += 'Имя кандидата: ' + candidates["name"] + " \n"
-            skill_list += "Позиция кандидата: " + candidates["position"] + "\n"
-            skill_list += "Навыки через запятую: " + candidates["skills"] + "\n""\n"
-            return "<h2>" + "<pre>" + skill_list + "</pre>" + "<h2>"
-    return "<h1>" + "Нет такого кандидата с такими знаниями, предлагаю САМИМ учить!!!!" + "<h1>"
+        skills = candidates["skills"].lower().split(', ')
+        if skill in skills:
+            skill_list += "Имя кандидата: " + candidates["name"] + " \n" \
+                          "Позиция кандидата: " + candidates["position"] + "\n" \
+                          "Навыки через запятую: " + candidates["skills"] + "\n""\n"
+    return "<h2>" + "<pre>" + skill_list + "</pre>" + "<h2>"
 
 
 if __name__ == "__main__":
