@@ -14,6 +14,7 @@ def candidate():
 def id_candidate(id):
     return get_id(id)
 
+
 @app.route("/skills/<skill>/")
 def candidate_skill(skill):
     return get_skil(skill)
