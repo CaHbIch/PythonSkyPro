@@ -12,7 +12,7 @@ def get_candidates():
     """ Выведите полный список кандидатов """
     candidate = ""
     for candidates in load_candidate():
-        candidate += "Имя кандидата: " + candidates["name"] + " \n" \
+        candidate += "Имя кандидата: " + candidates["name"] + "\n" \
                      "Позиция кандидата: " + candidates["position"] + "\n" \
                      "Навыки через запятую: " + candidates["skills"] + "\n""\n"
     return "<h2>" + "<pre>" + candidate + "</pre>" + "<h2>"
